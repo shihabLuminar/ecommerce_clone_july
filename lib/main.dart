@@ -1,3 +1,4 @@
+import 'package:ecommerce_clone_july/utils/image_constants.dart';
 import 'package:ecommerce_clone_july/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 

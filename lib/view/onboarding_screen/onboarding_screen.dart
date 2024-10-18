@@ -80,20 +80,27 @@ class OnboardingScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 19, bottom: 24),
-            child: Text(
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 24),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Prev",
+              style: GoogleFonts.montserrat(
+                  color: ColorConstants.GREYSHDE2,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18),
+            ),
+            Text(
               "Next",
               style: GoogleFonts.montserrat(
                   color: ColorConstants.PRIMARY,
                   fontWeight: FontWeight.w600,
                   fontSize: 18),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

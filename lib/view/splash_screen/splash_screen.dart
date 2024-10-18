@@ -4,6 +4,7 @@ import 'package:ecommerce_clone_july/utils/color_constants.dart';
 import 'package:ecommerce_clone_july/utils/image_constants.dart';
 import 'package:ecommerce_clone_july/view/onboarding_screen/onboarding_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
@@ -44,13 +45,11 @@ class _SplashScreenState extends State<SplashScreen> {
               fit: BoxFit.fill,
             ),
             SizedBox(width: 9),
-            Text(
-              "Stylish",
-              style: TextStyle(
-                  color: ColorConstants.PRIMARY,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold),
-            ),
+            Text("Stylish",
+                style: GoogleFonts.libreCaslonText(
+                    color: ColorConstants.PRIMARY,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold)),
           ],
         ),
       ),

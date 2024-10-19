@@ -1,5 +1,6 @@
 import 'package:ecommerce_clone_july/utils/color_constants.dart';
 import 'package:ecommerce_clone_july/utils/image_constants.dart';
+import 'package:ecommerce_clone_july/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -34,7 +35,13 @@ class OnboardingScreen extends StatelessWidget {
         ),
         actions: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginScreen(),
+                  ));
+            },
             child: Padding(
               padding: const EdgeInsets.only(right: 17.0),
               child: Text(

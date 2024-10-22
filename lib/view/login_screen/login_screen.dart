@@ -1,6 +1,9 @@
+import 'package:ecommerce_clone_july/utils/app_styels.dart';
 import 'package:ecommerce_clone_july/utils/color_constants.dart';
+import 'package:ecommerce_clone_july/view/get_started_screen/get_started_screen.dart';
 import 'package:ecommerce_clone_july/view/global_widgets/custom_button.dart';
 import 'package:ecommerce_clone_july/view/global_widgets/custom_input_field.dart';
+import 'package:ecommerce_clone_july/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -41,9 +44,40 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text("Forgot password"),
+                  Text(
+                    "Forgot password",
+                    style: AppStyels.montserratPara
+                        .copyWith(color: ColorConstants.PRIMARY, fontSize: 12),
+                  ),
                 ],
-              )
+              ),
+              SizedBox(height: 52),
+              CustomButton(
+                buttonText: "Login",
+                onButtonPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => GetStartedScreen(),
+                    ),
+                    (route) => false,
+                  );
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              CustomButton(
+                buttonText: "registed",
+                onButtonPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SplashScreen(),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),

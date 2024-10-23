@@ -1,6 +1,7 @@
 import 'package:ecommerce_clone_july/utils/color_constants.dart';
 import 'package:ecommerce_clone_july/utils/image_constants.dart';
 import 'package:ecommerce_clone_july/view/global_widgets/custom_button.dart';
+import 'package:ecommerce_clone_july/view/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -55,7 +56,11 @@ class GetStartedScreen extends StatelessWidget {
                   CustomButton(
                     buttonText: "Get Started",
                     onButtonPressed: () {
-                      //iaygsehfoijk
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeScreen(),
+                          ));
                     },
                   )
                 ],

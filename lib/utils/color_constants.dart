@@ -6,6 +6,8 @@ class ColorConstants {
 
   static const Color BLACK = Color(0xff000000);
   static const Color WHITE = Color(0xffFFFFFF);
+  static const Color SCAFFOLDBG = Color(0xffFDFDFD);
+
   static const Color GREYSHDE1 = Color(0xffA8A8A9);
   static const Color GREYSHDE2 = Color(0xffC4C4C4);
   static const Color GREYSHDE3 = Color(0xffA0A0A1);

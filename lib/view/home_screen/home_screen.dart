@@ -1,3 +1,4 @@
+import 'package:ecommerce_clone_july/dummy_db.dart';
 import 'package:ecommerce_clone_july/utils/color_constants.dart';
 import 'package:ecommerce_clone_july/utils/image_constants.dart';
 import 'package:ecommerce_clone_july/view/global_widgets/custom_textfield_with_shadow.dart';
@@ -47,12 +48,14 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
+          SizedBox(height: 16),
+
           //seciton 1 - search field
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: CustomTextFieldWithShadow(),
           ),
-
+          SizedBox(height: 16),
           // seciton 2 - All featured section
           _buildAllFeaturedSection()
           // seciton - 3 - carrousel seciton
@@ -64,35 +67,75 @@ class HomeScreen extends StatelessWidget {
   Column _buildAllFeaturedSection() {
     return Column(
       children: [
-        Row(
-          children: [
-            Text("All Featured"),
-            Spacer(),
-            Container(
-              child: Row(
-                children: [Text("sort"), Icon(Icons.swap_vert)],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 22.0),
+          child: Row(
+            children: [
+              Text(
+                "All Featured",
+                style: GoogleFonts.montserrat(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-            Container(
-              child: Row(
-                children: [Text("Filter"), Icon(Icons.filter_alt_outlined)],
+              Spacer(),
+              Container(
+                decoration: BoxDecoration(
+                    color: ColorConstants.PRIMARY,
+                    borderRadius: BorderRadius.circular(6)),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                child: Row(
+                  children: [
+                    Text(
+                      "sort",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 12,
+                      ),
+                    ),
+                    Icon(
+                      Icons.swap_vert,
+                      size: 16,
+                    )
+                  ],
+                ),
               ),
-            )
-          ],
+              SizedBox(width: 12),
+              Container(
+                decoration: BoxDecoration(
+                    color: ColorConstants.PRIMARY,
+                    borderRadius: BorderRadius.circular(6)),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                child: Row(
+                  children: [
+                    Text("Filter",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                        )),
+                    Icon(
+                      Icons.filter_alt_outlined,
+                      size: 16,
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
         SizedBox(height: 16),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: List.generate(
-              10,
+              DummyDb.featuredItemsList.length,
               (index) => Column(
                 children: [
                   CircleAvatar(
                     radius: 28,
+                    backgroundImage: NetworkImage(
+                        DummyDb.featuredItemsList[index]["imageUrl"]),
                   ),
                   SizedBox(height: 4),
-                  Text("All Featured"),
+                  Text(DummyDb.featuredItemsList[index]["name"]),
                 ],
               ),
             ),

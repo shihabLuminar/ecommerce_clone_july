@@ -1,3 +1,4 @@
+import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:ecommerce_clone_july/dummy_db.dart';
 import 'package:ecommerce_clone_july/utils/color_constants.dart';
 import 'package:ecommerce_clone_july/utils/image_constants.dart';
@@ -57,9 +58,45 @@ class HomeScreen extends StatelessWidget {
           ),
           SizedBox(height: 16),
           // seciton 2 - All featured section
-          _buildAllFeaturedSection()
+          _buildAllFeaturedSection(),
           // seciton - 3 - carrousel seciton
+          SizedBox(height: 16),
+
+          _buildCarouselSection()
         ],
+      ),
+    );
+  }
+
+  CarouselSlider _buildCarouselSection() {
+    return CarouselSlider.builder(
+      itemCount: DummyDb.featuredItemsList.length,
+      options: CarouselOptions(
+        height: 189,
+        viewportFraction: 1,
+        initialPage: 0,
+        enableInfiniteScroll: true,
+        reverse: true,
+        autoPlay: true,
+        autoPlayInterval: Duration(seconds: 3),
+        autoPlayAnimationDuration: Duration(milliseconds: 1000),
+        autoPlayCurve: Curves.easeIn,
+        scrollDirection: Axis.horizontal,
+      ),
+      itemBuilder: (context, index, realIndex) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                      DummyDb.featuredItemsList[index]["imageUrl"])),
+              color: Colors.red,
+              borderRadius: BorderRadius.circular(20)),
+          child: Center(
+            child: Text(index.toString()),
+          ),
+        ),
       ),
     );
   }
@@ -127,16 +164,19 @@ class HomeScreen extends StatelessWidget {
           child: Row(
             children: List.generate(
               DummyDb.featuredItemsList.length,
-              (index) => Column(
-                children: [
-                  CircleAvatar(
-                    radius: 28,
-                    backgroundImage: NetworkImage(
-                        DummyDb.featuredItemsList[index]["imageUrl"]),
-                  ),
-                  SizedBox(height: 4),
-                  Text(DummyDb.featuredItemsList[index]["name"]),
-                ],
+              (index) => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 28,
+                      backgroundImage: NetworkImage(
+                          DummyDb.featuredItemsList[index]["imageUrl"]),
+                    ),
+                    SizedBox(height: 4),
+                    Text(DummyDb.featuredItemsList[index]["name"]),
+                  ],
+                ),
               ),
             ),
           ),

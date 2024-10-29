@@ -12,7 +12,7 @@ class DummyDb {
     },
     {
       "imageUrl":
-          "https://images.pexels.com/photos/27351134/pexels-photo-3311071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          "https://images.pexels.com/photos/29135565/pexels-photo-29135565/free-photo-of-dynamic-long-exposure-of-los-angeles-traffic-at-night.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "name": "Electronics"
     },
     {

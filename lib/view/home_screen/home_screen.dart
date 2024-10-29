@@ -4,6 +4,7 @@ import 'package:ecommerce_clone_july/utils/color_constants.dart';
 import 'package:ecommerce_clone_july/utils/image_constants.dart';
 import 'package:ecommerce_clone_july/view/global_widgets/custom_textfield_with_shadow.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -62,7 +63,22 @@ class HomeScreen extends StatelessWidget {
           // seciton - 3 - carrousel seciton
           SizedBox(height: 16),
 
-          _buildCarouselSection()
+          _buildCarouselSection(),
+          TimerCountdown(
+            enableDescriptions: false,
+            format: CountDownTimerFormat.daysHoursMinutesSeconds,
+            endTime: DateTime.now().add(
+              Duration(
+                days: 5,
+                hours: 14,
+                minutes: 27,
+                seconds: 34,
+              ),
+            ),
+            onEnd: () {
+              print("Timer finished");
+            },
+          )
         ],
       ),
     );

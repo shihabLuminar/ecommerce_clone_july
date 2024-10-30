@@ -3,9 +3,11 @@ import 'package:ecommerce_clone_july/dummy_db.dart';
 import 'package:ecommerce_clone_july/utils/color_constants.dart';
 import 'package:ecommerce_clone_july/utils/image_constants.dart';
 import 'package:ecommerce_clone_july/view/global_widgets/custom_textfield_with_shadow.dart';
+import 'package:ecommerce_clone_july/view/home_screen/widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -48,72 +50,161 @@ class HomeScreen extends StatelessWidget {
           )
         ],
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 16),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 16),
 
-          //seciton 1 - search field
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: CustomTextFieldWithShadow(),
-          ),
-          SizedBox(height: 16),
-          // seciton 2 - All featured section
-          _buildAllFeaturedSection(),
-          // seciton - 3 - carrousel seciton
-          SizedBox(height: 16),
-
-          _buildCarouselSection(),
-          TimerCountdown(
-            enableDescriptions: false,
-            format: CountDownTimerFormat.daysHoursMinutesSeconds,
-            endTime: DateTime.now().add(
-              Duration(
-                days: 5,
-                hours: 14,
-                minutes: 27,
-                seconds: 34,
-              ),
+            //seciton 1 - search field
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: CustomTextFieldWithShadow(),
             ),
-            onEnd: () {
-              print("Timer finished");
-            },
-          )
-        ],
+            SizedBox(height: 16),
+            // seciton 2 - All featured section
+            _buildAllFeaturedSection(),
+            // seciton - 3 - carrousel seciton
+            SizedBox(height: 16),
+            // section 4
+            _buildCarouselSection(),
+
+            SizedBox(height: 16),
+            // section 5
+            _builDealOfTheDaySection(),
+          ],
+        ),
       ),
     );
   }
 
-  CarouselSlider _buildCarouselSection() {
-    return CarouselSlider.builder(
-      itemCount: DummyDb.featuredItemsList.length,
-      options: CarouselOptions(
-        height: 189,
-        viewportFraction: 1,
-        initialPage: 0,
-        enableInfiniteScroll: true,
-        reverse: true,
-        autoPlay: true,
-        autoPlayInterval: Duration(seconds: 3),
-        autoPlayAnimationDuration: Duration(milliseconds: 1000),
-        autoPlayCurve: Curves.easeIn,
-        scrollDirection: Axis.horizontal,
-      ),
-      itemBuilder: (context, index, realIndex) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                      DummyDb.featuredItemsList[index]["imageUrl"])),
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(20)),
-          child: Center(
-            child: Text(index.toString()),
+  Widget _builDealOfTheDaySection() {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Container(
+            padding: EdgeInsets.only(right: 12, left: 8, top: 8, bottom: 8),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: ColorConstants.SECONDARY),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Deal of the Day",
+                      style: GoogleFonts.montserrat(
+                          color: ColorConstants.WHITE,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16),
+                    ),
+                    SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Icon(Icons.alarm, color: ColorConstants.WHITE),
+                        SizedBox(width: 5.5),
+                        Text(
+                          "22h 55m 20s remaining ",
+                          style: GoogleFonts.montserrat(
+                              color: ColorConstants.WHITE,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: ColorConstants.WHITE, width: 1),
+                      borderRadius: BorderRadius.circular(4)),
+                  child: Row(
+                    children: [
+                      Text(
+                        "View All",
+                        style: GoogleFonts.montserrat(
+                            color: ColorConstants.WHITE,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_outlined,
+                        color: ColorConstants.WHITE,
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
-      ),
+        SizedBox(height: 16),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: List.generate(
+              7,
+              (index) => CustomItemCard(),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _buildCarouselSection() {
+    final controller = PageController(viewportFraction: 0.8, keepPage: true);
+
+    return Column(
+      children: [
+        CarouselSlider.builder(
+          itemCount: DummyDb.featuredItemsList.length,
+          options: CarouselOptions(
+            height: 189,
+            viewportFraction: 1,
+            initialPage: 0,
+            enableInfiniteScroll: true,
+            reverse: true,
+            autoPlay: true,
+            autoPlayInterval: Duration(seconds: 3),
+            autoPlayAnimationDuration: Duration(milliseconds: 1000),
+            autoPlayCurve: Curves.easeIn,
+            scrollDirection: Axis.horizontal,
+          ),
+          itemBuilder: (context, index, realIndex) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(
+                          DummyDb.featuredItemsList[index]["imageUrl"])),
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(20)),
+              child: Center(
+                child: Text(index.toString()),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 12,
+        ),
+        SmoothPageIndicator(
+            controller: PageController(initialPage: 1),
+            count: 3,
+            effect: ScrollingDotsEffect(
+              activeDotScale: 1.4,
+              maxVisibleDots: 5,
+              radius: 10,
+              spacing: 8,
+              dotHeight: 9,
+              dotWidth: 9,
+            )),
+      ],
     );
   }
 

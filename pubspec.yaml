@@ -38,6 +38,8 @@ dependencies:
   google_fonts: ^6.2.1
   carousel_slider_plus: ^7.0.1
   flutter_timer_countdown: ^1.0.7
+  smooth_page_indicator: ^1.2.0+3
+  custom_rating_bar: ^3.0.0
 
 dev_dependencies:
   flutter_test:

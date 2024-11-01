@@ -3,6 +3,7 @@ import 'package:ecommerce_clone_july/dummy_db.dart';
 import 'package:ecommerce_clone_july/utils/color_constants.dart';
 import 'package:ecommerce_clone_july/utils/image_constants.dart';
 import 'package:ecommerce_clone_july/view/global_widgets/custom_textfield_with_shadow.dart';
+import 'package:ecommerce_clone_july/view/home_screen/widgets/custom_view_all_card.dart';
 import 'package:ecommerce_clone_july/view/home_screen/widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
@@ -71,8 +72,88 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 16),
             // section 5
             _builDealOfTheDaySection(),
+
+            // section 6
+            SizedBox(height: 16),
+
+            _specialOffersSection(),
+            SizedBox(height: 16),
+
+            _buildTrendingProductsSection(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildTrendingProductsSection() {
+    return Column(
+      children: [
+        CustomViewAllCard(
+          backgroundColor: ColorConstants.ORANGE,
+          icon: Icons.calendar_month_rounded,
+          subText: "Last Date 29/02/22",
+          title: "Trending Products ",
+        ),
+      ],
+    );
+  }
+
+  Widget _specialOffersSection() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+            child: Row(
+              children: [
+                Image.asset(
+                    height: 60,
+                    width: 75,
+                    fit: BoxFit.contain,
+                    ImageConstants.SPECIALOFFERS),
+                SizedBox(width: 24),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text("Special Offers",
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                  color: ColorConstants.BLACK)),
+                          SizedBox(width: 8),
+                          Container(
+                            height: 20,
+                            width: 20,
+                            decoration: BoxDecoration(
+                                border: Border.all(),
+                                borderRadius: BorderRadius.circular(9)),
+                            child: Center(
+                              child: Text(
+                                "😱",
+                                style: TextStyle(fontSize: 10),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                          "We make sure you get the offer you need at best prices",
+                          maxLines: 2,
+                          style: GoogleFonts.montserrat(
+                              fontSize: 12, color: ColorConstants.BLACK))
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(),
+        ],
       ),
     );
   }
@@ -80,66 +161,11 @@ class HomeScreen extends StatelessWidget {
   Widget _builDealOfTheDaySection() {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Container(
-            padding: EdgeInsets.only(right: 12, left: 8, top: 8, bottom: 8),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: ColorConstants.SECONDARY),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Deal of the Day",
-                      style: GoogleFonts.montserrat(
-                          color: ColorConstants.WHITE,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16),
-                    ),
-                    SizedBox(height: 8),
-                    Row(
-                      children: [
-                        Icon(Icons.alarm, color: ColorConstants.WHITE),
-                        SizedBox(width: 5.5),
-                        Text(
-                          "22h 55m 20s remaining ",
-                          style: GoogleFonts.montserrat(
-                              color: ColorConstants.WHITE,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 12),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: ColorConstants.WHITE, width: 1),
-                      borderRadius: BorderRadius.circular(4)),
-                  child: Row(
-                    children: [
-                      Text(
-                        "View All",
-                        style: GoogleFonts.montserrat(
-                            color: ColorConstants.WHITE,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 12),
-                      ),
-                      Icon(
-                        Icons.arrow_forward_outlined,
-                        color: ColorConstants.WHITE,
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
+        CustomViewAllCard(
+          backgroundColor: ColorConstants.SECONDARY,
+          icon: Icons.alarm,
+          subText: "22h 55m 20s remaining ",
+          title: "Deal of the Day",
         ),
         SizedBox(height: 16),
         SingleChildScrollView(

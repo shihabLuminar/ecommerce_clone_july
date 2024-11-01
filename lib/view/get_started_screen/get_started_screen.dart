@@ -1,5 +1,6 @@
 import 'package:ecommerce_clone_july/utils/color_constants.dart';
 import 'package:ecommerce_clone_july/utils/image_constants.dart';
+import 'package:ecommerce_clone_july/view/bottom_navigation_bar_screen/bottom_navigation_bar_screen.dart';
 import 'package:ecommerce_clone_july/view/global_widgets/custom_button.dart';
 import 'package:ecommerce_clone_july/view/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,7 @@ class GetStartedScreen extends StatelessWidget {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HomeScreen(),
+                            builder: (context) => BottomNavigationBarScreen(),
                           ));
                     },
                   )

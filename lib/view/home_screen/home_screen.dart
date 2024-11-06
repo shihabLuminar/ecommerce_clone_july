@@ -6,7 +6,7 @@ import 'package:ecommerce_clone_july/view/global_widgets/custom_textfield_with_s
 import 'package:ecommerce_clone_july/view/home_screen/widgets/custom_view_all_card.dart';
 import 'package:ecommerce_clone_july/view/home_screen/widgets/item_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

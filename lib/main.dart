@@ -1,6 +1,5 @@
 import 'package:ecommerce_clone_july/utils/color_constants.dart';
-import 'package:ecommerce_clone_july/utils/image_constants.dart';
-import 'package:ecommerce_clone_july/view/splash_screen/splash_screen.dart';
+import 'package:ecommerce_clone_july/view/product_details_screen/product_detials_screen.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: ColorConstants.SCAFFOLDBG,
       ),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: ProductDetialsScreen(),
     );
   }
 }
